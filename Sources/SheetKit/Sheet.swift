@@ -24,7 +24,7 @@ enum Constants {
     }
 }
 
-class Sheet: UIViewController, SheetType {
+public class Sheet: UIViewController, SheetType {
     let header: Header?
     let body: UIViewController
     var topAnchor: NSLayoutConstraint!
@@ -274,10 +274,14 @@ class Sheet: UIViewController, SheetType {
             return container.view.bounds.height - 100
         }
     }
+    
+    // MARK: - UIGestureRecognizerDelegate
+    
+    
 }
 
 extension Sheet: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.view is UIScrollView {
             return true // To avoid conflict with UIScrollView gesture
         }
