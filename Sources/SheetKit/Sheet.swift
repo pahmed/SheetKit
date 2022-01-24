@@ -246,7 +246,19 @@ public class Sheet: UIViewController, SheetType {
     }
     
     func findScrollView() -> UIScrollView? {
-        return body.view as? UIScrollView
+        return findScrollView(in: body.view)
+    }
+    
+    func findScrollView(in view: UIView) -> UIScrollView? {
+        if view is UIScrollView { return view as? UIScrollView }
+        
+        for subview in view.subviews {
+            if let scrollView = findScrollView(in: subview) {
+                return scrollView
+            }
+        }
+        
+        return nil
     }
     
     func closestDetent() -> Detent {
