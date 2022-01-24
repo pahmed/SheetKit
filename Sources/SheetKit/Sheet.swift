@@ -28,7 +28,7 @@ public class Sheet: UIViewController, SheetType {
     let header: Header?
     let body: UIViewController
     var topAnchor: NSLayoutConstraint!
-    var scrollView: UIScrollView!
+    var scrollView: UIScrollView?
     var container: UIViewController!
     weak var delegate: SheetDelegate?
     
@@ -175,9 +175,9 @@ public class Sheet: UIViewController, SheetType {
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
         recognizer.delegate = self
         recognizer.requiresExclusiveTouchType = false
-        scrollView.addGestureRecognizer(recognizer)
+        scrollView?.addGestureRecognizer(recognizer)
         
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: defaultTopMargin, right: 0)
+        scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: defaultTopMargin, right: 0)
         
         if let header = header {
             let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
@@ -212,7 +212,7 @@ public class Sheet: UIViewController, SheetType {
             // Rest scrolling position (based on the below condition) only if the gesture was on a scroll view
             if recognizer.view is UIScrollView {
                 let largeDetentMargin = marginForDetent(.large)
-                if scrollView.contentOffset.y <= 0 || topAnchor.constant > largeDetentMargin {
+                if let scrollView = scrollView, scrollView.contentOffset.y <= 0 || topAnchor.constant > largeDetentMargin {
                     // Do this to avoid letting the scroll view continue scrolling after
                     // the end of gesture
                     scrollView.setContentOffset(.zero, animated: false)
@@ -223,7 +223,7 @@ public class Sheet: UIViewController, SheetType {
             
             if recognizer.view is UIScrollView {
                 let largeDetentMargin = marginForDetent(.large)
-                if scrollView.contentOffset.y <= 0 || topAnchor.constant > largeDetentMargin {
+                if let scrollView = scrollView, scrollView.contentOffset.y <= 0 || topAnchor.constant > largeDetentMargin {
                     topAnchor.constant += translation
                     scrollView.contentOffset.y = 0
                 }
@@ -245,8 +245,8 @@ public class Sheet: UIViewController, SheetType {
         setDetent(closestDetent(), animationVelocity: velocity)
     }
     
-    func findScrollView() -> UIScrollView {
-        return body.view as! UIScrollView
+    func findScrollView() -> UIScrollView? {
+        return body.view as? UIScrollView
     }
     
     func closestDetent() -> Detent {
