@@ -12,8 +12,8 @@ protocol SheetDelegate: AnyObject {
 }
 
 public struct Header {
-    let viewController: UIViewController
-    let height: CGFloat
+    public let viewController: UIViewController
+    public let height: CGFloat
 }
 
 protocol SheetType {
