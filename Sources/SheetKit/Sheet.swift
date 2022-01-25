@@ -67,7 +67,9 @@ public class Sheet: UIViewController, SheetType {
         topAnchor = view.topAnchor.constraint(equalTo: container.view.topAnchor, constant: defaultTopMargin)
         topAnchor.isActive = true
         
-        setupGestureRecognizer()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.setupGestureRecognizer()
+        }
         
         setDetent(.medium, animated: false)
     }
