@@ -67,6 +67,8 @@ public class Sheet: UIViewController, SheetType {
         topAnchor = view.topAnchor.constraint(equalTo: container.view.topAnchor, constant: defaultTopMargin)
         topAnchor.isActive = true
         
+        setupGestureRecognizer()
+        
         setDetent(.medium, animated: false)
     }
     
@@ -159,8 +161,6 @@ public class Sheet: UIViewController, SheetType {
         } else {
             body.view.topAnchor.constraint(equalTo: grapper.bottomAnchor, constant: grapperMargin).isActive = true
         }
-        
-        setupGestureRecognizer()
     }
     
     func grapperView() -> UIView {
