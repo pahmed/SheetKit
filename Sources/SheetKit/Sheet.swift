@@ -176,7 +176,7 @@ public class Sheet: UIViewController, SheetType {
         
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
         recognizer.delegate = self
-        recognizer.requiresExclusiveTouchType = false
+//        recognizer.requiresExclusiveTouchType = false
         scrollView?.addGestureRecognizer(recognizer)
         
         scrollView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: defaultTopMargin, right: 0)
@@ -184,7 +184,7 @@ public class Sheet: UIViewController, SheetType {
         if let header = header {
             let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
             recognizer.delegate = self
-            recognizer.requiresExclusiveTouchType = false
+//            recognizer.requiresExclusiveTouchType = false
             header.viewController.view.addGestureRecognizer(recognizer)
         }
         
@@ -194,7 +194,7 @@ public class Sheet: UIViewController, SheetType {
     func setupViewGestureRecognizer(for view: UIView) {
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(recognizer:)))
         recognizer.delegate = self
-        recognizer.requiresExclusiveTouchType = false
+//        recognizer.requiresExclusiveTouchType = false
         view.addGestureRecognizer(recognizer)
     }
     
