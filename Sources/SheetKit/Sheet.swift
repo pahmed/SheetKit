@@ -296,7 +296,7 @@ public class Sheet: UIViewController, SheetType {
 
 extension Sheet: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer.view is UIScrollView {
+        if gestureRecognizer.view == scrollView {
             return true // To avoid conflict with UIScrollView gesture
         }
         return false
