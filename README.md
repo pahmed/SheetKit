@@ -1,3 +1,3 @@
 # SheetKit
 
-A description of this package.
+A bottom sheet component which supports continious scrolling in a way that is similar to Apple Maps sheet. 
